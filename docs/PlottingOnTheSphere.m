@@ -24,7 +24,7 @@ theta = linspace(-pi/2,pi/2,ceil(res/2));
 % Next we need a function defined on the sphere and sampled at the grid
 % locations.  We will use a combination of spherical harmonics $Y_{8}^{0}$
 % and $Y_{8}^{7}$, which are available from the |sphHarm| function in the
-% *sphere-points* package:
+% *spherepts* package:
 f = sphHarm(8,0,L,T)+sphHarm(8,7,L,T);
 %%
 % We can visualize this function using |pcolor| as 
@@ -41,7 +41,7 @@ title('Contour plot of f in longitude-latitude')
 %%
 % We can add in a plot of the coast lines of the land on Earth to plots in
 % longitude and latitude using the |plotCoastLines| function in the
-% *sphere-points* package.
+% *spherepts* package.
 hold on;
 plotCoastLines(0,'k-');
 title('Contour plot of f in longitude-latitude with coast lines')
@@ -52,7 +52,7 @@ hold off;
 % projection of the sphere, which is a 2D projection developed by Ernst
 % Hammer. To make a Hammer plot, the spherical coordinates first need to be
 % mapped to the Hammer coordinates. This can be done using the |sph2hammer|
-% function in the *sphere-points* package.  Then the function can be plotted
+% function in the *spherepts* package.  Then the function can be plotted
 % using the |pcolor| as above. 
 [HX,HY] = sph2hammer(L,T);
 clf;
@@ -128,7 +128,7 @@ axis tight; daspect([1 1 1]); view(vw);
 % If the data is sufficiently sampled on the sphere and the sample points
 % are quasi-uniformly distributed, then a surface plot of the data can be
 % obtained from a triangulation of the sample points.  The function
-% |delaunaySph| in the *sphere-points* package can be used to compute a
+% |delaunaySph| in the *spherepts* package can be used to compute a
 % triangulation of the sample points and this can be combined with the
 % |trisurf| command in Matlab to obtain a plot.  We illustrate this below
 % for N=10000 minimum energy sample sites.
@@ -168,7 +168,7 @@ axis tight; daspect([1 1 1]);
 % Plots of vector fields on the surface of the sphere can be made using the
 % |quiver3| function. To make these plots, however, the vector field must
 % be expressed with respect to the Cartesian coordinate system. The
-% functions |sphv2cartv| and |cartv2sphv| in the *sphere-points* package
+% functions |sphv2cartv| and |cartv2sphv| in the *spherepts* package
 % provide an easy way to switch between the spherical coordinate and
 % Cartesian coordinate representations of the fields.
 [x,y,z,u,v,w] = sphv2cartv(lambda,theta,u,v);

@@ -30,7 +30,7 @@
 % from MatlabCentral from the Mathworks website.  For example, the KD-tree
 % package written by Andrea Tagliasacchi is particularly nice.
 %
-% The |findKNearestNeighbors| function in the *sphere-points* provides an easy
+% The |findKNearestNeighbors| function in the *spherepts* provides an easy
 % way to do nearest neighbor searching with a KD-tree using either
 % functions from the Statistics Toolbox or from the Tagliasacchi package.
 % The default is to use the former if available.  

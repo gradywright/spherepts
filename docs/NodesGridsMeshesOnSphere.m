@@ -18,11 +18,11 @@
 % These are based on mapped rectangular grids, a subdivided polyhedron
 % (usually an icosahedron), or more general ``meshless'' techniques that do
 % not use an underlying grid or mesh. Several of these methods are
-% available in the *sphere-points* package.
+% available in the *spherepts* package.
 %
 % In this tutorial we give examples of the functions available and
 % illustrate the corresponding node sets.  We also highlight some of the utility
-% functions in the *sphere-points* package for dealing with these node
+% functions in the *spherepts* package for dealing with these node
 % sets.
 %
 % Note that all the functions for generating the node sets return an
@@ -86,7 +86,7 @@ axis equal; view(vw);
 %%
 % Alternatively, the structure can also be seen by plotting the Voronoi
 % diagram of the nodes (or the dual of the Delaunay triangulation).  The
-% function in the *sphere-points* package for this operation is |voronoiSph|:
+% function in the *spherepts* package for this operation is |voronoiSph|:
 voronoiSph(x0);
 title('Voronoi diagram of Type 0 Icosahedral Nodes',FS,fs), view(vw)
 %%
@@ -108,7 +108,7 @@ title('Cubed Sphere Nodes',FS,fs); view(vw);
 %%
 % To see the underlying structure of these nodes we can triangulate them
 % and plot the resulting triangles.  The utility function
-% |delaunaySph| in the *sphere-points* package provides a
+% |delaunaySph| in the *spherepts* package provides a
 % straightforward way to generate such a triangulation:
 tri = delaunaySph(x);
 trisurf(tri,x(:,1),x(:,2),x(:,3),FC,fc);
@@ -206,7 +206,7 @@ title('Voronoi diagram of the Maximum Determinant Nodes',FS,fs);
 axis equal; view(vw);
 
 %% Hammersley nodes
-% The last set of nodes available from the |sphere-points| package are not
+% The last set of nodes available from the |spherepts| package are not
 % quasi-uniform, but instead provide a ``low-discrepancy'' sequence for the
 % sphere. These nodes are available from the |getHammersleyNodes| function.
 % Here is an example for $N=2025$:
