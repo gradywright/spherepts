@@ -62,6 +62,7 @@ end
 x = [];
 wghts = [];
 load(fname,'x')
+load(fname,'wghts')
 
 end
 
