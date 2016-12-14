@@ -28,10 +28,15 @@ function [x,wghts] = getSymTDesignNodes(t)
 %   Rob Womersley's website http://web.maths.unsw.edu.au/~rsw/Sphere/EffSphDes/
 %
 %   Example 1:
-%       [x,w] = getSymTDesignNodes(21);  % t-design nodes for t=21.
+%       x = getSymTDesignNodes(21);  % t-design nodes for t=21.
 %       plotSphNodes(x);
-%       Y = sphHarm(21,13,x(:,1),x(:,2),x(:,3));
-%       intY = w'*Y
+%
+%   Example 2:
+%       [x,w] = getSymTDesignNodes(11);  % t-design nodes for t=11.
+%       f = @(x,y,z) 1+x+y.^2+x.^2.*y+x.^4+y.^5+(x.*y.*z).^2
+%       intF = w'*f(x(:,1),x(:,2),x(:,3));
+%       exactIntF = 216*pi/35;
+%       error = abs(exactIntF - intF)
 
 % Author: Grady Wright, 2016
 

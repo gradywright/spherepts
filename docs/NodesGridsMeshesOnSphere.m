@@ -1,5 +1,5 @@
 %% Nodes/grids/meshes on the sphere
-% Grady Wright
+% Grady Wright, Boise State University, 14-Dec-2016
 
 %%
 % A key difficulty with developing numerical methods for problems in
@@ -182,7 +182,6 @@ title('Minimum Energy Nodes',FS,fs); view(vw);
 % pattern can be observed for these nodes.
 voronoiSph(x);
 title('Voronoi diagram of Minimum Energy Nodes',FS,fs), view(vw)
-
 %% Maximum determinant nodes
 % The maximum determinant (MD) nodes are also computed using an
 % optimization technique. The idea is to arrange the nodes so that the
@@ -204,41 +203,37 @@ title('Maximum Determinant Nodes',FS,fs); view(vw);
 voronoiSph(x);
 title('Voronoi diagram of the Maximum Determinant Nodes',FS,fs);
 axis equal; view(vw);
-
 %% Symmetric t-design nodes
-% Spherical $t$-designs are nodes on the sphere with the property that
-% when any spherical harmonic of degree $t$ or less is sampled at these nodes
+% Spherical $t$-designs are nodes on the sphere with the property that when
+% any spherical harmonic of degree $t$ or less is sampled at these nodes
 % the average value of these samples (times the surface area of the sphere)
-% gives the exact value of the integral of the spherical harmonic over the 
+% gives the exact value of the integral of the spherical harmonic over the
 % sphere. This implies that they provide an equal weight quadrature formula
 % for the sphere.  The goal of designing a spherical $t$-design is, for a
-% given $t$, to minimize the number of nodes on the sphere. Like the ME and MD nodes, 
-% there is no closed form expression for these nodes, and one must resort
-% to specialized optimization techniques. 
+% given $t$, to minimize the number of nodes on the sphere. Like the ME and
+% MD nodes, there is no closed form expression for these nodes, and one
+% must resort to specialized optimization techniques.
 
 %%
 % The function |getSymTDesignNodes| can be used to get certain sets of these
 % nodes for various (odd) $t$, with good geometric properties.  This function 
 % returns, so called symmetric (or antipodal) $t$-designs, that were
-% computed and provided freely by Prof. Womersley (see
-% <http://web.maths.unsw.edu.au/~rsw/Sphere/EffSphDes/>). Here is an example 
-% for $t=43$.
+% computed and provided freely by Prof. Womersley;  see
+% <http://web.maths.unsw.edu.au/~rsw/Sphere/EffSphDes/> 
+% Here is an example for $t=43$.
 x = getSymTDesignNodes(63);
 plotSphNodes(x);
 title('Symmetric t-design nodes',FS,fs); view(vw);
-
 %%
-% For a given $t$, these node sets contain $N=t^2/2 + t + O(1)$ points.
+% For a given $t$, these node sets contain $N=t^2/2 + t/2 + O(1)$ points.
 % For the above node set $N$ is 
 size(x,1)
-
 %%
 % Comparing to the ME nodes, we see the $t$-design nodes are less regular 
 % (like the ME nodes), but still quasi-uniformly distributed. 
 voronoiSph(x);
-title('Voronoi diagram of the t-design Nodes',FS,fs);
+title('Voronoi diagram of the t-design nodes',FS,fs);
 axis equal; view(vw);
-
 %% Hammersley nodes
 % The last set of nodes available from the |spherepts| package are not
 % quasi-uniform, but instead provide a ``low-discrepancy'' sequence for the
