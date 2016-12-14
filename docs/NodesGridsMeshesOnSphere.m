@@ -234,6 +234,10 @@ size(x,1)
 voronoiSph(x);
 title('Voronoi diagram of the t-design nodes',FS,fs);
 axis equal; view(vw);
+
+%%
+% If you rotate this figure around, you can see the symmetric (anti-podal)
+% structure.
 %% Hammersley nodes
 % The last set of nodes available from the |spherepts| package are not
 % quasi-uniform, but instead provide a ``low-discrepancy'' sequence for the
