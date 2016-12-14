@@ -48,7 +48,7 @@ if isempty(find(N == possibleN, 1))
             'The value N=%d is not available, the next smallest available value is %d and the largest is %d',N,possibleN(id2),possibleN(id1));
     else
         error('RBFSPHERE:GETMINENERGYNODES',...
-            'The value N=%d is not available, the closes available value is %d',N,possibleN(end));
+            'The value N=%d is not available, the closest available value is %d',N,possibleN(end));
     end
 end
 
