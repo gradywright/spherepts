@@ -91,7 +91,7 @@ voronoiSph(x0);
 title('Voronoi diagram of Type 0 Icosahedral Nodes',FS,fs), view(vw)
 %%
 voronoiSph(x1);
-title('Triangulation of Type 1 Icosahedral Nodes',FS,fs), view(vw)
+title('Voronoi diagram of Type 1 Icosahedral Nodes',FS,fs), view(vw)
 
 %% Cubed sphere 
 % The cubed sphere is formed by first forming a tensor product grid on the
@@ -220,7 +220,7 @@ axis equal; view(vw);
 % returns, so called symmetric (or antipodal) $t$-designs, that were
 % computed and provided freely by Prof. Womersley;  see
 % <http://web.maths.unsw.edu.au/~rsw/Sphere/EffSphDes/> 
-% Here is an example for $t=43$.
+% Here is an example for $t=63$.
 x = getSymTDesignNodes(63);
 plotSphNodes(x);
 title('Symmetric t-design nodes',FS,fs); view(vw);

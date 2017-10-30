@@ -1,4 +1,4 @@
-function [varargout] = plotSphNodes(x)
+function [varargout] = plotSphNodes(x,mrkrsize)
 %PLOTSPHNODES Makes a simple plot of a given set of nodes on the surface of
 %   the unit sphere.
 %
@@ -15,6 +15,10 @@ function [varargout] = plotSphNodes(x)
 %
 
 % Author: Grady Wright, 2014
+
+if ( nargin < 2 )
+    mrkrsize = 6;
+end
 
 % Make sure the nodes are on the unit sphere.
 x = bsxfun(@rdivide,x,sqrt(sum(x.^2,2)));
@@ -33,7 +37,7 @@ surf(xx,yy,zz,1+0*xx,'EdgeColor','None','FaceColor',clr);
 %
 % Add the nodes as black solid circles.
 %
-plot3(x(:,1),x(:,2),x(:,3),'k.','MarkerSize',6);
+plot3(x(:,1),x(:,2),x(:,3),'k.','MarkerSize',mrkrsize);
 hold off;
 daspect([1 1 1]);
 view(3);

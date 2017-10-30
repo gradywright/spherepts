@@ -149,6 +149,7 @@ shading interp; axis tight; daspect([1 1 1]); view(vw);
 % use sample points from the minimum energy nodes:
 x = getMinEnergyNodes(43^2);
 [lambda,theta] = cart2sphm(x);
+
 %%  Plots in Longitude-Latitude
 % If the vector field is defined with respect to the the spherical
 % coordinates system then a 2D plot of the vector field can be made using
