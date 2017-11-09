@@ -44,10 +44,10 @@ if isempty(find(N == possibleN, 1))
     id1 = find(N < possibleN,1);
     id2 = id1 - 1;
     if ~isempty(id1)
-        error('RBFSPHERE:GETMAXDETNODES',...
+        error('SPHEREPTS:GETMAXDETNODES',...
             'The value N=%d is not available, the next smallest available value is %d and the largest is %d',N,possibleN(id2),possibleN(id1));
     else
-        error('RBFSPHERE:GETMINENERGYNODES',...
+        error('SPHEREPTS:GETMINENERGYNODES',...
             'The value N=%d is not available, the closest available value is %d',N,possibleN(end));
     end
 end
@@ -55,7 +55,7 @@ end
 fname = sprintf('md%05d.mat',N);
 
 if exist(fname,'file') == 0
-    error('RBFSPHERE:GETMAXDETNODES',...
+    error('SPHEREPTS:GETMAXDETNODES',...
         'Cannot find the maximum determinant node file, please insure these files are installed on the MATLAB path');
 end
 

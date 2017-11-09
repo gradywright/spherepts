@@ -46,7 +46,7 @@ if license('test','statistics_toolbox')
     [nnidx,dist] = knnsearch(treeroot, y, 'k', k);
 else  % Use the KD Tree code from by Andrea Tagliasacchi
     if exist('kdtree_build.m','file') == 0
-        error('RBFSPHERE:FINDKNEARESTNEIGHBORS',...
+        error('SPHEREPTS:FINDKNEARESTNEIGHBORS',...
             'Cannot find the KD Tree package from Andrea Tagliasacchi on the path. This package is necessary for this function.');
     end
     nnidx = zeros(size(y,1),k);

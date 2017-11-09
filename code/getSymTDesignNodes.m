@@ -47,10 +47,10 @@ if isempty(find(t == possibleT, 1))
     id1 = find(t < possibleT,1);
     id2 = id1 - 1;
     if ~isempty(id1)
-        error('RBFSPHERE:GETSYMTDESIGNNODES',...
+        error('SPHEREPTS:GETSYMTDESIGNNODES',...
             'The value t=%d is not available, the next smallest available value is %d and the largest is %d',t,possibleT(id2),possibleT(id1));
     else
-        error('RBFSPHERE:GETSYMTDESIGNNODES',...
+        error('SPHEREPTS:GETSYMTDESIGNNODES',...
             'The value t=%d is not available, the closest available value is %d',t,possibleT(end));
     end
 end
@@ -58,7 +58,7 @@ end
 fname = sprintf('std%03d.mat',t);
 
 if exist(fname,'file') == 0
-    error('RBFSPHERE:GETSYMTDESIGNNODES',...
+    error('SPHEREPTS:GETSYMTDESIGNNODES',...
         'Cannot find the symmetric t-design node file, please insure these files are installed on the MATLAB path');
 end
 

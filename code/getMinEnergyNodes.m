@@ -48,10 +48,10 @@ if isempty(find(N == possibleN, 1))
     id1 = find(N < possibleN,1);
     id2 = max(id1 - 1,1);
     if ~isempty(id1)
-        error('RBFSPHERE:GETMINENERGYNODES',...
+        error('SPHEREPTS:GETMINENERGYNODES',...
             'The value N=%d is not available, the next smallest available value is %d and the largest is %d',N,possibleN(id2),possibleN(id1));
     else
-        error('RBFSPHERE:GETMINENERGYNODES',...
+        error('SPHEREPTS:GETMINENERGYNODES',...
             'The value N=%d is not available, the closes available value is %d',N,possibleN(end));
     end
 end
@@ -59,7 +59,7 @@ end
 fname = sprintf('me%05d.mat',N);
 
 if exist(fname,'file') == 0
-    error('RBFSPHERE:GETMINENERGYNODES',...
+    error('SPHEREPTS:GETMINENERGYNODES',...
         'Cannot find the minimum energy node file, please insure these files are installed on the MATLAB path');
 end
 

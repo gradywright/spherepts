@@ -22,7 +22,7 @@ function varargout = voronoiSph(x,varargin)
 N = size(x,1);
 
 if N <= 2
-    error('RBFSPHERE:voronoiSph:NothingToPlot','Not enough nodes for the Voronoi Diagram');
+    error('SPHEREPTS:voronoiSph:NothingToPlot','Not enough nodes for the Voronoi Diagram');
 end
 
 computeTri = true;

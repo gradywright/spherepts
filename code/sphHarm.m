@@ -27,7 +27,7 @@ function Y = sphHarm(l,m,c1,c2,c3)
 % The degree l must be greater than or equal to the magnitude of the order
 % m
 if l < abs(m)
-    error('RBFSPHERE:sphHarm','The degree of the spherical harmonic must be greater than or equal to the magnitude of the order');
+    error('SPHEREPTS:sphHarm','The degree of the spherical harmonic must be greater than or equal to the magnitude of the order');
 end
 
 if nargin == 4      % Spherical coordinates used.
@@ -39,7 +39,7 @@ elseif nargin == 5  % Cartesian coordinates used.
     [lam,th] = cart2sph(c1,c2,c3);
     c1 = []; c2 = []; c3 = [];
 else
-    error('RBFSPHERE:sphHarm','Proper number of input arguments not given');
+    error('SPHEREPTS:sphHarm','Proper number of input arguments not given');
 end
 
 % Flatten and transpose th and lam so they work with the legendre function
