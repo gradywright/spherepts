@@ -44,11 +44,9 @@ elseif nargin == 3
 end
 
 % Coast data contains all the information about how to draw the lines connecting
-% the coasts of all the coninents.
-load CoastData;
-
-lon = ncst(:,1)*pi/180;    % Data is stored in degrees
-lat = ncst(:,2)*pi/180;
+% the coasts of all the continents.
+x = load('CoastData.mat', 'coast');
+[lon,lat] = cart2sphm(x.coast);
 
 id = find(isnan(lon));
 
@@ -81,7 +79,7 @@ elseif ptype == 2
     [xh,yh] = sph2hammer(lam,th);
     plot(xh,yh,'k--');
 else
-    [x,y,z] = sph2cart(lon,lat,1.001 + 0*ncst(:,1));
+    [x,y,z] = sph2cart(lon,lat,1.001 + 0*lon(:,1));
     if fillCont
         for j=1:length(id)-1
             fid = id(j)+1:id(j+1)-1;
