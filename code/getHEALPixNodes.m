@@ -1,65 +1,54 @@
-function x = getHEALPixNodes(P)
+function x = getHEALPixNodes(S)
 %GETHEALPIXNODES Computes the Hierarchical Equal Area iso-latitude
 %   PIXelization nodes.
 %
-%   X = getHEALPixNodes(P) returns an N-by-3 matrix containing the HEALPix
+%   X = getHEALPixNodes(S) returns an N-by-3 matrix containing the HEALPix
 %   nodes on the sphere, which were developed for applications related to
-%   cosmic microwave background (CMB) radiation. For a given P, the total
+%   cosmic microwave background (CMB) radiation. For a given S, the total
 %   number of nodes returned is
-%                            N = 12*P^2;
+%                            N = 12*S^2;
 %   The columns of X corresponds to the (x,y,z) cordinates of the nodes.
 %   
 %   For more details see
 %   K. M. Gorski, E. Hivon, A. J. Banday, B. D. Wandelt, F. K. Hansen, M.
 %   Reinecke, and M. Bartelmann. Healpix: A framework for high-resolution
 %   discretization and fast analysis of data distributed on the sphere.
-%   The Astrophysical Journal, 622(2):759?771, 2005.
+%   The Astrophysical Journal, 622(2):759-771, 2005.
 %
 %   Example:
 %       x = getHEALPixNodes(10);  % Gives N = 1200 nodes
 %       plotSphNodes(x);
 
-% Author: Grady Wright, 2014
+% Author: Grady Wright, 2018
 
-Nside = P;
-Npix = 12*Nside^2;
-
-x = zeros(Npix+1,3);
+xn = zeros(2*S*(S-1),3); xs = xn;
 count = 1;
-for p=0:Npix
-    ph = (p+1)/2;
-    i = floor(sqrt(ph-sqrt(floor(ph))))+1;
-    if i >= Nside
-        break;
-    end
-    j = p+1-2*i*(i-1);
-    zp = 1 - i^2/(3*Nside^2);
-    phi = pi/2/i*(j-1/2);
-    xp = cos(phi).*cos(asin(zp));
-    yp = sin(phi).*cos(asin(zp));
-    x(count,:) = [xp yp zp];
-    count = count + 1;
+for j=1:S-1
+    k = (0:4*j-1)';
+    % Longitude (0 <= lam < 2*pi)
+    lam = (k+0.5)/(2*j)*pi;
+    % Latitude  (0 <= th < pi)
+    th = ones(size(k))*acos(1-1/3*(j/S)^2);
+    % Cartesian coordinates for the rings in the northern hemisphere
+    xn(count+k,:) = [cos(lam).*sin(th) sin(lam).*sin(th) cos(th)];
+    % Cartesian coordinates for the rings in the southern hemisphere
+    xs(count+k,:) = flipud(xn(count+k,:)).*repmat([1 1 -1],[4*j 1]);
+    count = count + 4*j;
 end
 
-for p=0:Npix
-    i = floor(p/4/Nside)+Nside;
-    if i > 2*Nside
-        break;
-    end
-    j = mod(p,4*Nside)+1;
-    zp = 4/3-2*i/3/Nside;
-    s = mod(i-Nside+1,2);
-    phi = pi/2/Nside*(j-s/2);
-    xp = cos(phi).*cos(asin(zp));
-    yp = sin(phi).*cos(asin(zp));
-    x(count,:) = [xp yp zp];
-    count = count + 1;
-end
+% Longitude (0 <= lam < 2*pi)
+lam = linspace(0,2*pi,4*S+1); lam = lam(1:end-1); 
+% Latitude  (0 <= th < pi)
+th = acos(2/3-2*(0:2*S)/(3*S));
+[tt,ll] = meshgrid(th,lam);
+% Every other ring is offset by pi/(4*S) from zero in longitude
+ll(:,1:2:end) = ll(:,1:2:end) + pi/(4*S);
+ll = ll(:); tt = tt(:);
+% Cartesian coordinates for the rings along the equator.
+xe = [cos(ll).*sin(tt) sin(ll).*sin(tt) cos(tt)];
 
-x = x(1:count-1,:);
-xf = flipud(x(1:Npix/2-2*Nside,:));
-xf(:,3) = -xf(:,3);
-x = [x;xf];
+% Assemble the final point set
+x = [xn;xe;flipud(xs)];
 
 end
 
